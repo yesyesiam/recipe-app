@@ -117,11 +117,12 @@ export function get_recipe(id){
                 return res.json()
             })
             .then(item=>{
+                console.log(item)
                 if(item){
                     const recipe = {...item, key: id}
                     dispatch({type:C.GET_RECIPE, recipe})
                 }else{
-                    dispatch(clearRecipeState())
+                    dispatch(reqResults('Такого рецепта нет null', 'error'))
                 }
             })
             .catch(e=>dispatch(reqResults(e.message, 'error')))
